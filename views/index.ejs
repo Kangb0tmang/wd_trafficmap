@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Traffic Map</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="">
+      <h1>Traffic Map</h1>
+      <div class="list-container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi ipsam est placeat cum optio minima nobis recusandae dolores corporis aspernatur illum ipsa quasi voluptatum possimus perferendis repellendus, veniam quia beatae?
+      </div>
+
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var allIncidents = <%- JSON.stringify(incidents) %>
+  </script>
+  <script type="text/javascript" src="map.js"></script>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXxEb1l02mt4btbGJmyC0iBCaYNKXhEB8&callback=initMap"></script>
+</body>
+</html>

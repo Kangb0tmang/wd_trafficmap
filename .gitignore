@@ -1,0 +1,7 @@
+.DS_Store
+*.log
+npm-debug.log*
+*.sqlite
+node_modules
+jspm_packages
+.swp

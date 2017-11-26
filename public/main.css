@@ -1,0 +1,15 @@
+body
+{
+  margin: 0 auto;
+}
+
+.app-container
+{
+
+}
+
+#map
+{
+  height: 600px;
+  width: 100%;
+}
