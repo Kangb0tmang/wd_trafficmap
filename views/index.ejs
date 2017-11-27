@@ -8,17 +8,21 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" type="text/css" href="scss/main.scss">
 </head>
 
 <body>
   <div class="app-container">
     <div class="main-container">
       <div class="list-container">
-        <h3>Incident List</h3>
-        <ul class="incident-list">
-        </ul>
+        <div class="list-header">
+          <h3>Incident List - <span id="incident-count"></span></h3>
+          <button id="find" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" type="button" onclick="getLocation()">
+            <i class="material-icons">my_location</i>
+          </button>
+        </div>
+
+        <ul class="incident-list mdl-list"></ul>
       </div>
 
       <div class="map-container">
@@ -30,7 +34,7 @@
   <script type="text/javascript">
     var allIncidents = <%- JSON.stringify(incidents) %>
   </script>
-  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript" src="public/map.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

@@ -1,14 +1,18 @@
-console.log('Google Maps');
-// console.log(allIncidents);
+var map;
+var melbourne = { lat: -37.8136, lng: 144.9631 };
+var zoomLevel = 16;
 
 function initMap()
 {
-  var zoomLevel = 16;
-  var melbourne = { lat: -37.818573, lng: 144.9569066 };
-  var map = new google.maps.Map(document.getElementById('map'),
+  map = new google.maps.Map(document.getElementById('map'),
   {
     zoom: zoomLevel,
     center: melbourne
+  });
+  centerMarker = new google.maps.Marker({
+    map: map,
+    position: melbourne,
+    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
   });
 
   var infoWindow = new google.maps.InfoWindow();
@@ -39,23 +43,58 @@ function initMap()
   google.maps.event.addListener(map, 'idle', function()
   {
     var bounds = map.getBounds();
-    var count = 0;
+    var incidentCount = 0;
+    var displayIncidentCount = document.querySelector('#incident-count');
     var clearIncidentList = document.querySelector('.incident-list').innerHTML = '';
+    displayIncidentCount.innerHTML = 0;
     for (var index = 0; index < allMarkers.length; index++)
     {
-      var marker = allMarkers[index]
+      var marker = allMarkers[index];
       if (bounds.contains(marker.getPosition()) === true)
       {
         viewVisibleItems(marker);
+        incidentCount++;
+        displayIncidentCount.textContent = incidentCount;
       }
     }
+  });
+
+  google.maps.event.addDomListener(window, "resize", function()
+  {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+  });
+}
+
+function getLocation()
+{
+  if (navigator.geolocation)
+  {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+}
+
+function showPosition(position)
+{
+  map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+  map.setZoom(zoomLevel);
+  centerMarker.setMap(null);
+  centerMarker = new google.maps.Marker({
+    map: map,
+    position:
+    {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    },
+    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
   });
 }
 
 var locations = [];
 allIncidents.forEach(function(incident)
 {
-  var incidentId = incident.id
+  var incidentId = incident.id;
   var incidentTitle = incident.title;
   var incidentAlertType = incident.alert_type;
   var incidentContent = incident.description;
@@ -77,6 +116,7 @@ var viewVisibleItems = function(object)
   var incidentListItem = document.createElement('li');
   var incidentListItemText = document.createTextNode(object.title + ' - ' + object.alertType);
   incidentListItem.setAttribute('id', object.incidentId);
+  incidentListItem.classList.add('mdl-list__item');
   incidentListItem.appendChild(incidentListItemText);
   incidentList.appendChild(incidentListItem);
 };

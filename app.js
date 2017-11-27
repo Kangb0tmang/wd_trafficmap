@@ -1,12 +1,22 @@
 var express = require ('express');
 var request = require('request');
+var compileSass = require('express-compile-sass');
+var root = process.cwd();
 var $ = require('jquery');
 var app = express();
 const PORT = 8000;
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(compileSass({
+  root: root,
+  sourceMap: true, // Includes Base64 encoded source maps in output css
+  sourceComments: true, // Includes source comments in output css
+  watchFiles: true, // Watches sass files and updates mtime on main files for each change
+  logToConsole: false // If true, will log to console.error on errors
+}));
+app.use(express.static(root));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function(req, response)
 {

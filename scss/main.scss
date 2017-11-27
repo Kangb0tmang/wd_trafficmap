@@ -1,0 +1,34 @@
+.main-container
+{
+  display: flex;
+  width: 100%;
+
+  .list-container
+  {
+    width: 24%;
+
+    .list-header
+    {
+      display: flex;
+      justify-content: center;
+      padding: 0px 15px;
+    }
+
+    .incident-list
+    {
+      height: 80vh;
+      overflow-y: auto;
+    }
+  }
+
+  .map-container
+  {
+    width: 75%;
+
+    #map
+    {
+      height: 95vh;
+      wdith: 100%;
+    }
+  }
+}
