@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.28.7",
+    "jquery": "^3.2.1",
     "node-sass": "^4.7.2",
     "nodemon": "^1.12.1",
     "sass-loader": "^6.0.6",

@@ -1,5 +1,6 @@
 var express = require ('express');
 var request = require('request');
+var $ = require('jquery');
 var app = express();
 const PORT = 8000;
 
