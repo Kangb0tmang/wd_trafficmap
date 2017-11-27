@@ -44,17 +44,22 @@ function initMap()
   {
     var bounds = map.getBounds();
     var incidentCount = 0;
-    var displayIncidentCount = document.querySelector('#incident-count');
+    var displayIncidentCount = document.querySelector('.incident-count');
+    var displayMobileIncidentCount = document.querySelector('.mobile-incident-count');
     var clearIncidentList = document.querySelector('.incident-list').innerHTML = '';
+    var clearMobileIncidentList = document.querySelector('.mobile-incident-list').innerHTML = '';
     displayIncidentCount.innerHTML = 0;
+    displayMobileIncidentCount.innerHTML = 0;
     for (var index = 0; index < allMarkers.length; index++)
     {
       var marker = allMarkers[index];
       if (bounds.contains(marker.getPosition()) === true)
       {
         viewVisibleItems(marker);
+        mobileViewVisibleItems(marker);
         incidentCount++;
-        displayIncidentCount.textContent = incidentCount;
+        displayIncidentCount.textContent = `(${incidentCount})`;
+        displayMobileIncidentCount.textContent = `(${incidentCount})`;
       }
     }
   });
@@ -119,6 +124,17 @@ var viewVisibleItems = function(object)
   incidentListItem.classList.add('mdl-list__item');
   incidentListItem.appendChild(incidentListItemText);
   incidentList.appendChild(incidentListItem);
+};
+
+var mobileViewVisibleItems = function(object)
+{
+  var mobileIncidentList = document.querySelector('.mobile-incident-list');
+  var mobileListItem = document.createElement('li');
+  var mobileListItemText = document.createTextNode(object.title + ' - ' + object.alertType);
+  mobileListItem.setAttribute('id', object.incidentId);
+  mobileListItem.classList.add('mdl-list__item');
+  mobileListItem.appendChild(mobileListItemText);
+  mobileIncidentList.appendChild(mobileListItem);
 };
 
 var getWindowContent = function(object)

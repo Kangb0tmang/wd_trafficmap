@@ -1,6 +1,9 @@
 .main-container {
   display: flex;
   width: 100%; }
+  .main-container .mobile-list-container,
+  .main-container .mobile-incident-list-container {
+    display: none; }
   .main-container .list-container {
     width: 24%; }
     .main-container .list-container .list-header {
@@ -15,3 +18,48 @@
     .main-container .map-container #map {
       height: 95vh;
       wdith: 100%; }
+
+@media screen and (max-width: 1350px) {
+  .list-header {
+    width: 100%; }
+    .list-header h3 {
+      width: 50%; } }
+
+@media screen and (max-width: 1100px) {
+  .main-container {
+    width: 100%; }
+    .main-container .list-container {
+      width: 34%; }
+    .main-container .map-container {
+      width: 65%; } }
+
+@media screen and (max-width: 812px) {
+  .main-container {
+    display: block;
+    width: 100%; }
+    .main-container .mobile-list-container {
+      display: block;
+      padding: 10px; }
+      .main-container .mobile-list-container .show-incident-list {
+        margin-right: 10px; }
+      .main-container .mobile-list-container .mobile-incident-list-container.active {
+        display: block;
+        transition: 1s; }
+        .main-container .mobile-list-container .mobile-incident-list-container.active .mobile-incident-list {
+          max-height: 30vh;
+          overflow-y: auto; }
+          .main-container .mobile-list-container .mobile-incident-list-container.active .mobile-incident-list li {
+            display: inline-block;
+            width: 49%; }
+        .main-container .mobile-list-container .mobile-incident-list-container.active .closebtn {
+          font-size: 40px;
+          position: absolute;
+          right: 30px;
+          text-decoration: none;
+          top: 70px; }
+    .main-container .list-container {
+      display: none; }
+    .main-container .map-container {
+      width: 100%; }
+      .main-container .map-container #map {
+        height: 90vh; } }

@@ -2,7 +2,6 @@ var express = require ('express');
 var request = require('request');
 var compileSass = require('express-compile-sass');
 var root = process.cwd();
-var $ = require('jquery');
 var app = express();
 const PORT = 8000;
 

@@ -12,30 +12,59 @@
 </head>
 
 <body>
+  <!-- app-container-->
   <div class="app-container">
+    <!-- main-container -->
     <div class="main-container">
+
+      <!-- mobile-list-container -->
+      <div class="mobile-list-container">
+        <button class="show-incident-list mdl-button mdl-js-button mdl-js-ripple-effect" onclick="showIncidentList()">Incident List <span class="mobile-incident-count"></span>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" type="button" onclick="getLocation()">
+          <i class="material-icons">my_location</i>
+        </button>
+
+        <!-- mobile-incident-list-container -->
+        <div class="mobile-incident-list-container">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeIncidentList()">&times;</a>
+          <ul class="mobile-incident-list mdl-list"></ul>
+        </div>
+        <!-- end mobile-incident-list-container -->
+      </div>
+      <!-- mobile-list-container -->
+
+      <!-- list-container -->
       <div class="list-container">
+        <!-- list-header -->
         <div class="list-header">
-          <h3>Incident List - <span id="incident-count"></span></h3>
-          <button id="find" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" type="button" onclick="getLocation()">
+          <h3>Incident List <span class="incident-count"></span></h3>
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" type="button" onclick="getLocation()">
             <i class="material-icons">my_location</i>
           </button>
         </div>
+        <!-- end list-header -->
 
         <ul class="incident-list mdl-list"></ul>
       </div>
+      <!-- end list-container -->
 
+      <!-- map-container -->
       <div class="map-container">
         <div id="map"></div>
       </div>
+      <!-- end map-container -->
+
     </div>
+    <!-- end main-container -->
   </div>
+  <!-- end app-container -->
 
   <script type="text/javascript">
     var allIncidents = <%- JSON.stringify(incidents) %>
   </script>
+  <script type="text/javascript" src="public/main.js"></script>
   <script type="text/javascript" src="public/map.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXxEb1l02mt4btbGJmyC0iBCaYNKXhEB8&callback=initMap"></script>
